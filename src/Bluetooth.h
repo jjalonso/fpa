@@ -1,20 +1,23 @@
 #ifndef BLUETOOTH_H
 #define BLUETOOTH_H
 
-// #include <Arduino.h>
+#include "Arduino.h"
 #include <SoftwareSerial.h>
 
-// #include "Beacon.h"
-#include "fsm/Machine.h"
+#include "Machine.h"
 
 class Bluetooth : public Machine {
   
   public:
     Bluetooth(int rxPin, int txPin);
+    void begin();
+    void sendAT(char* at);
+    void pump();
+    
 
   private:
-    SoftwareSerial * _serial;
-    // enum BTState { INQ_START, INQ_DEVICE, INQ_END };
+    int _rxPin;
+    int _txPin;
     
 };
 

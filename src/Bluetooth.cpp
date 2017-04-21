@@ -1,23 +1,20 @@
 
-#include <Arduino.h>
-
 #include "Bluetooth.h"
 
 Bluetooth::Bluetooth(int rxPin, int txPin) : Machine() {
-  _serial = new SoftwareSerial(rxPin, txPin); // RX, TX
+  _rxPin = rxPin;
+  _txPin = txPin;
 }
 
-// void Bluetooth::beep() {
-  // digitalWrite(_pin, LOW);
-  // delay(80);
-  // digitalWrite(_pin, HIGH);
-  // delay(80);
-  // digitalWrite(_pin, LOW);
-  // delay(80);
-  // digitalWrite(_pin, HIGH);
-  // delay(80);
-  // digitalWrite(_pin, LOW);
-  // delay(200);  
-  // digitalWrite(_pin, HIGH);
-// }
+void Bluetooth::begin() {
+  _serial = new SoftwareSerial(_rxPin, _txPin);
+  _serial->begin(115200);
+}
 
+void Bluetooth::sendAT(char* at) {
+  _serial->write(at);
+}
+
+void Bluetooth::pump() {
+  Serial.write("SerialBuffer pump");
+}

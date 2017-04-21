@@ -7,15 +7,14 @@
 #include "Buzzer.h"
 
 Buzzer::Buzzer(int pin) {
-  pinMode(pin, OUTPUT);
   _pin = pin;
-  pinMode (_pin, OUTPUT) ;
-  digitalWrite(_pin, HIGH);  
 }
 
-/*
-  Beep the buzzer
-*/
+void Buzzer::begin() {
+  pinMode (_pin, OUTPUT) ;
+  digitalWrite(_pin, HIGH);
+}
+
 void Buzzer::beep() {
   digitalWrite(_pin, LOW);
   delay(80);

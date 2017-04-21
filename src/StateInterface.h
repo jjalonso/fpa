@@ -1,10 +1,10 @@
-#ifndef STATE_H
-#define STATE_H
+#ifndef STATE_INTERFACE_H
+#define STATE_INTERFACE_H
 
-class State  {
+class StateInterface  {
 
   public:
-    virtual ~State();
+    virtual ~StateInterface();
     virtual void onEnter() = 0;
     virtual void onUpdate() = 0;
     virtual void onExit() = 0;
