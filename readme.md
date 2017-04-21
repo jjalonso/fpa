@@ -1,13 +1,11 @@
 
-Codename: FPS
+Codename: FPA
 =
 Forgetful People Assistant
 -
 
 
-Use *steveyin.arduino-vscode* extension for VSCode and configure 
+Use *vsciot-vscode.vscode-arduino* extension for VSCode and configure 
 
-Scripts
-- _debug_ : Start the Serial terminal (Quit with _Ctrl+A_ > _K_ > _Y_) 
 
 
