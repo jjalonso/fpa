@@ -1,16 +1,23 @@
 
-#include "Machine.h"
+#include "Context.h"
 
-void Machine::setState(StateInterface* state) {
-  if (state != 0) {
-    _state->onExit();
-    delete _state;
-  }
-  _state = state;
-  _state->onEnter();
+Context::Context(State* firstState, SoftwareSerial* serial) {
+  _serial = serial;
+  _setState(firstState);
 }
 
-void Machine::update() {
-  _state->onUpdate();
+void Context::_setState(State* state) {
+  // if (_state != 0) {
+  //   _state->onExit(_serial);
+  // }
+  _state = state;
+  _state->onEnter(_serial);
+}
+
+void Context::update() {
+  State* updatedState = _state->onUpdate(_serial);
+  if (updatedState != _state) {
+    _setState(updatedState);
+  }
 }
 

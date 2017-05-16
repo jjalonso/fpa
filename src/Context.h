@@ -1,19 +1,21 @@
-#ifndef MACHINE_H
-#define MACHINE_H
+#ifndef CONTEXT_H
+#define CONTEXT_H
 
-#include "StateInterface.h"
+#include <Arduino.h>
+#include <SoftwareSerial.h>
 
-class Machine {
+#include "State.h"
+
+class Context {
   
   public:
+    Context(State* firstState, SoftwareSerial* serial);
     void update();
 
-  protected:
-    void setState(StateInterface* state);
-
   private:
-    StateInterface* _state;
-    
+    void _setState(State* state);
+    State* _state;
+    SoftwareSerial* _serial;
 };
 
 #endif

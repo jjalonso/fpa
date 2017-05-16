@@ -1,8 +1,3 @@
-/*
-  Buzzer.cpp - Library for active buzzer.
-*/
-
-#include <Arduino.h>
 
 #include "Buzzer.h"
 

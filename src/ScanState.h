@@ -1,16 +1,18 @@
-#ifndef SCAN_STATE_H
-#define SCAN_STATE_H
+#ifndef SCANSTATE_H
+#define SCANSTATE_H
 
-#include "StateInterface.h"
+#include "Arduino.h"
 
-class ScanState : public StateInterface {
+#include "State.h"
+// #include "DiscState.h"
+
+class ScanState : public State {
   
   public:
-    ScanState();
-    void onEnter();
-    void onUpdate();
-    void onExit();
-        
+    // ScanState(SoftwareSerial* serial);
+    State* onUpdate(SoftwareSerial* serial);
+    void onEnter(SoftwareSerial* serial);
+    void onExit(SoftwareSerial* serial);  
 };
 
 #endif

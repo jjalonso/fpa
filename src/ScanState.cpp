@@ -1,21 +1,24 @@
 
-
-#include "Arduino.h"
 #include "ScanState.h"
 
+// ScanState::ScanState(SoftwareSerial* serial) : State(SoftwareSerial* serial) {
 
-ScanState::ScanState() : StateInterface() {
-  Serial.write("ScanState constructor");
+// } 
+
+void ScanState::onEnter(SoftwareSerial* serial) {
+  Serial.println("ScanOnEnter ");
+  serial->write("AT+LESCAN\r\n");
+  // serial->write("AT+LESCAN\r\n");
 }
 
-void ScanState::onEnter() {
-  Serial.write("ScanState onEnter()");  
+ State* ScanState::onUpdate(SoftwareSerial* serial) {
+  Serial.println("ScanOnUpdate ");
+  Serial.println(serial->readString());
+  return this;
+  // DiscState* discState = new DiscState();
+  // return discState;
 }
 
-void ScanState::onUpdate() {
-  Serial.write("ScanState onUpdate");  
-}
-
-void ScanState::onExit() {
-  Serial.write("ScanState onExit");
+void ScanState::onExit(SoftwareSerial* serial) {
+  Serial.println("ScanOnExit ");
 }

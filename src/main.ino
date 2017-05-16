@@ -1,12 +1,25 @@
 
 // #include "Beacon.h"
-#include "Buzzer.h"
-//#include "bluetooth/Context.h"
+// #include "Buzzer.h"
+// #include <Arduino.h>
 
-// Bluetooth bluetooth(12, 11);
-Buzzer buzzer = Buzzer(10);
 
-// Buzzer buzzer(10);
+// #include "Bluetooth.h"
+// #include "Transition.h"
+
+
+
+
+
+// Buzzer buzzer = Buzzer(10);
+
+Bluetooth bluetooth = Bluetooth();
+// Transition toFake = Transition("xxx", bluetooth, fakeState);
+
+// Transition scanTransitions[1] = {
+//   toFake
+// }
+
 
 
 // struct Record {
@@ -56,7 +69,7 @@ Buzzer buzzer = Buzzer(10);
 
 
 //
-// Change the current state machine state
+// Change the current state Context state
 //
 // void setBTState(BTState nextState) {
 //   clearBTBuffer();
@@ -325,7 +338,11 @@ Buzzer buzzer = Buzzer(10);
 // Main Arduino setup()
 //
 void setup() {
-  // TODO: Attach to new device callback;
+  Serial.begin(9600);
+
+  // buzzer.begin();
+  bluetooth.begin(12, 11);
+
 
   // Serial.begin(115200);
   // BTSerial.begin(9600);
@@ -333,8 +350,6 @@ void setup() {
   // delay(1000);
   // isBTScanning = false;
   // setBTState(INQ_START);
-
-  buzzer.begin();
 }
 
 
@@ -344,7 +359,9 @@ void setup() {
 // Main Arduino loop()
 //
 void loop() {
-
+  bluetooth.update();
+  delay(2000);
+  
   // bluetooth.update();
 
 
@@ -367,7 +384,7 @@ void loop() {
 
 
 
-  // Bluetooth state machine
+  // Bluetooth state Context
   
 //   switch(currentBTState) {
     
